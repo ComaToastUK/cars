@@ -1,0 +1,23 @@
+{
+  "parser": "@typescript-eslint/parser",
+  "extends": [
+    "plugin:@typescript-eslint/recommended"
+  ],
+  "parserOptions": {
+    "project": "[ tsconfig.json ]",
+    "sourceType": "module"
+  },
+  "plugins": [
+    "@typescript-eslint"
+  ],
+  "rules": {
+    "@typescript-eslint/semi": [
+      "error",
+      "never"
+    ],
+    "@typescript-eslint/quotes": [
+      2,
+      "single"
+    ]
+  }
+}
