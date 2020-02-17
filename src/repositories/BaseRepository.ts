@@ -1,11 +1,12 @@
-import { Guid } from 'guid-typescript'
 import { Repository } from './Repository'
-import { Collection, Db, InsertWriteOpResult } from 'mongodb'
+import { Collection, Db, InsertWriteOpResult, DeleteWriteOpResultObject } from 'mongodb'
+import { inject, injectable, unmanaged } from 'inversify'
 
+@injectable()
 export abstract class BaseRepository<T> implements Repository<T> {
   public readonly _collection: Collection
 
-  constructor(db: Db, collectionName: string) {
+  constructor(@inject('Db') db: Db, @unmanaged() collectionName: string) {
     this._collection = db.collection(collectionName)
   }
 
@@ -14,16 +15,16 @@ export abstract class BaseRepository<T> implements Repository<T> {
     return !!result.result.ok
   }
 
-  async delete(id: Guid): Promise<boolean> {
-    const result = await this._collection.findOneAndDelete({ _id: id.toString() })
-    return !!result.ok
+  async delete(id: string): Promise<boolean> {
+    const result: DeleteWriteOpResultObject = await this._collection.deleteOne({ _id: id })
+    return !!result.result.ok
   }
 
   async find(): Promise<T[]> {
     return await this._collection.find().toArray()
   }
 
-  async findOne(id: Guid): Promise<T | null> {
-    return await this._collection.findOne({ _id: id.toString() })
+  async findOne(id: string): Promise<T | null> {
+    return await this._collection.findOne({ _id: id })
   }
 }

@@ -1,15 +1,14 @@
 import * as bodyParser from 'body-parser'
 import express, { Application } from 'express'
 import { Controller } from './controllers/Controller'
-import { CarController } from './controllers/CarController'
-
+import { Container } from 'inversify'
 
 export class AppBuilder {
     private _app: Application
-    private _controller: Controller
+    private _container: Container
 
-    constructor() {
-        this._controller = new CarController()
+    constructor(container: Container) {
+        this._container = container
         this._app = express()
     }
 
@@ -20,6 +19,7 @@ export class AppBuilder {
     }
 
     private registerControllers(): void {
-        this._controller.register(this._app)
+        const controllers: Controller[] = this._container.getAll<Controller>('Controller')
+        controllers.forEach(controller => controller.register(this._app))
     }
 }

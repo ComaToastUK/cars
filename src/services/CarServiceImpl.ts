@@ -1,12 +1,13 @@
 import { Car } from '../models/Car'
 import { CarService } from './CarService'
-import { Guid } from 'guid-typescript'
 import { Repository } from '../repositories/Repository'
+import { injectable, inject } from 'inversify'
 
+@injectable()
 export class CarServiceImpl implements CarService {
     private _repository: Repository<Car>
     
-    constructor(repository: Repository<Car>) {
+    constructor(@inject('Repository<Car>') repository: Repository<Car>) {
         this._repository = repository
     }
 
@@ -15,7 +16,7 @@ export class CarServiceImpl implements CarService {
         return cars
     }
 
-    public async getCarById(id: Guid): Promise<Car | null> {
+    public async getCarById(id: string): Promise<Car | null> {
         const car: Car | null = await this._repository.findOne(id)
         return car
     }
@@ -25,7 +26,7 @@ export class CarServiceImpl implements CarService {
         return result
     }
 
-    public async deleteCar(id: Guid): Promise<boolean> {
+    public async deleteCar(id: string): Promise<boolean> {
         const result = await this._repository.delete(id)
         return result
     }

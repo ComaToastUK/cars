@@ -1,9 +1,7 @@
-import { Guid } from 'guid-typescript'
-
 export interface Repository<T> {
     find(): Promise<T[]>;
-    findOne(id: Guid): Promise<T | null>;
+    findOne(id: string): Promise<T | null>;
     create(entity: T): Promise<boolean>;
-    delete(id: Guid): Promise<boolean>;
+    delete(id: string): Promise<boolean>;
 }
   

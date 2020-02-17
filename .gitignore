@@ -15,6 +15,12 @@ pids
 *.seed
 *.pid.lock
 
+#DB Data
+data/
+
+#Environment Variables
+.env
+
 #DS_Store
 .DS_Store
 

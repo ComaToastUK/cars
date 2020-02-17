@@ -1,7 +1,7 @@
 import { Guid } from 'guid-typescript'
 
 export class Car {
-    private _id: Guid
+    private _id: string
 
     constructor(
         private _make: string,
@@ -9,10 +9,10 @@ export class Car {
         private _colour: string,
         private _year: string,
     ) { 
-        this._id = Guid.create()
+        this._id = Guid.create().toString()
     }
 
-    get id(): Guid {
+    get id(): string {
         return this._id
     }
 
