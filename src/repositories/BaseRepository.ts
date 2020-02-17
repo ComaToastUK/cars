@@ -11,6 +11,7 @@ export abstract class BaseRepository<T> implements Repository<T> {
   }
 
   async create(entity: T): Promise<boolean> {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const result: InsertWriteOpResult<any> = await this._collection.insert(entity)
     return !!result.result.ok
   }

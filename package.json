@@ -5,9 +5,10 @@
   "scripts": {
     "build": "tsc",
     "prestart": "yarn run build",
-    "start": "nodemon dist/server.js",
+    "start": "nodemon dist/src/server.js",
     "lint": "eslint src/** --ext .ts",
-    "lint:fix": "eslint src/** --ext .ts --fix"
+    "lint:fix": "eslint src/** --ext .ts --fix",
+    "test": "jest --coverage --verbose"
   },
   "author": "James Stubbs <jamesstubbs1988@gmail.com>",
   "license": "",
@@ -25,11 +26,14 @@
     "reflect-metadata": "^0.1.13"
   },
   "devDependencies": {
+    "@types/jest": "^25.1.2",
     "@types/express": "^4.17.2",
     "@types/node": "^13.5.1",
     "@typescript-eslint/eslint-plugin": "^2.18.0",
     "@typescript-eslint/parser": "^2.18.0",
     "eslint": "^6.8.0",
+    "jest": "^25.1.0",
+    "ts-jest": "^25.2.0",
     "typescript": "^3.7.5"
   }
 }
