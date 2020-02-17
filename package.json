@@ -12,8 +12,11 @@
   "author": "James Stubbs <jamesstubbs1988@gmail.com>",
   "license": "",
   "dependencies": {
+    "@types/joi": "^14.3.4",
     "express": "^4.17.1",
+    "express-validation": "^1.0.3",
     "guid-typescript": "^1.0.9",
+    "joi": "^14.3.1",
     "nodemon": "^2.0.2"
   },
   "devDependencies": {
