@@ -6,7 +6,8 @@ import validation from '../validation/carValidation'
 
 export class CarController implements Controller {
     public register(app: Application): void {
-        app.route('/cars').post(validate(validation), async (req: Request, res: Response, next: NextFunction) => {
+        app.route('/cars')
+        .post(validate(validation), async (req: Request, res: Response, next: NextFunction) => {
             const body = req.body
             const car = new Car(body.make, body.model, body.colour, body.year)
             res.json(car)
