@@ -13,10 +13,10 @@ export class MockRepository implements Repository<Car> {
     }
 
     async findOne(id: string): Promise<Car | null> {
-        const exists = this._collection.some(car => car.id === id)
+        const exists = this._collection.some(car => car.getId === id)
         if (exists) {
             for (let i = 0; i < this._collection.length; i++) {
-                if (this._collection[i].id === id) {
+                if (this._collection[i].getId === id) {
                     return this._collection[i]
                 }
             }
@@ -30,11 +30,24 @@ export class MockRepository implements Repository<Car> {
     }
 
     async delete(id: string): Promise<boolean> {
-        const exists = this._collection.some(car => car.id === id)
+        const exists = this._collection.some(car => car.getId === id)
         if (exists) {
             for (let i = 0; i < this._collection.length; i++) {
-                if (this._collection[i].id === id) {
+                if (this._collection[i].getId === id) {
                     this._collection.splice(i)
+                    return true
+                }
+            }
+        }
+        return false
+    }
+
+    async update(car: Car, id: string): Promise<boolean> {
+        const exists = this._collection.some(car => car.getId === id)
+        if (exists) {
+            for (let i = 0; i < this._collection.length; i++) {
+                if (this._collection[i].getId === id) {
+                    this._collection[i] = car
                     return true
                 }
             }

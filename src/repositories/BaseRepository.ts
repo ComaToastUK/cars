@@ -28,4 +28,9 @@ export abstract class BaseRepository<T> implements Repository<T> {
   async findOne(id: string): Promise<T | null> {
     return await this._collection.findOne({ _id: id })
   }
+
+  async update(entity: T, id: string): Promise<boolean> { 
+    const result = await this._collection.update({id: id}, entity)
+    return !!result.result
+  }
 }

@@ -22,7 +22,7 @@ describe('CarServiceImpl', () => {
         it('Adds a Car object to the repository', async () => {
             const result = await carServiceImpl.createCar(cars[0])
             expect(result).toEqual(true) 
-            expect(await mockRepository.findOne(cars[0].id)).toEqual(cars[0])
+            expect(await mockRepository.findOne(cars[0].getId)).toEqual(cars[0])
         })
     })
 
@@ -66,7 +66,7 @@ describe('CarServiceImpl', () => {
         })
 
         it('gets a single car based on its id', async () => {
-            const result = await carServiceImpl.getCarById(cars[2].id)
+            const result = await carServiceImpl.getCarById(cars[2].getId)
             expect(result).toEqual(cars[2])
         })
 
@@ -91,9 +91,31 @@ describe('CarServiceImpl', () => {
         })
 
         it('removes a single car from the repository based on its id', async () => {
-            const result = await carServiceImpl.deleteCar(cars[2].id)
+            const result = await carServiceImpl.deleteCar(cars[2].getId)
             expect(result).toEqual(true)
             expect(await mockRepository.find()).toEqual([cars[0],cars[1]])
+        })
+    })
+
+    describe('updateCar', () => {
+
+        it('updates the car in the repository', async () => {
+            mockRepository = new MockRepository()
+            const car0 = new Car('Jaguar', 'XF', 'Black', '2018')
+            const car1 = new Car('Renault', 'Clio', 'White', '2020')
+            car1.setId = car0.getId
+            await mockRepository.create(car0)
+            carServiceImpl = new CarServiceImpl(mockRepository)
+
+            const result = await carServiceImpl.updateCar(car1, car0.getId)
+            const car = await mockRepository.findOne(car0.getId)
+            
+            expect(result).toEqual(true)
+            expect(car?.getId).toEqual(car0.getId)
+            expect(car?.getMake).toEqual(car1.getMake)
+            expect(car?.getModel).toEqual(car1.getModel)
+            expect(car?.getColour).toEqual(car1.getColour)
+            expect(car?.getYear).toEqual(car1.getYear)
         })
     })
 })

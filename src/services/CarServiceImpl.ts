@@ -30,4 +30,8 @@ export class CarServiceImpl implements CarService {
         const result = await this._repository.delete(id)
         return result
     }
+
+    public async updateCar(car: Car, id: string): Promise<boolean> {
+           return await this._repository.update(car, id)
+    }
 }

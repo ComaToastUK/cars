@@ -50,5 +50,16 @@ export class CarController implements Controller {
                 next(err)
             }
         })
+        .post(validate(validation), async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                const body = req.body
+                const car = new Car(body.make, body.model, body.colour, body.year)
+                car.setId = req.params.id
+                await this._service.updateCar(car, req.params.id)
+                return res.json(car)
+            } catch (err) {
+                next(err)
+            }
+        })
     }
 }

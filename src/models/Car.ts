@@ -1,34 +1,38 @@
 import { Guid } from 'guid-typescript'
 
 export class Car {
-    private _id: string
+    private id: string
 
     constructor(
-        private _make: string,
-        private _model: string,
-        private _colour: string,
-        private _year: string,
+        private make: string,
+        private model: string,
+        private colour: string,
+        private year: string,
     ) { 
-        this._id = Guid.create().toString()
+        this.id = Guid.create().toString()
     }
 
-    get id(): string {
-        return this._id
+    get getId(): string {
+        return this.id
     }
 
-    get make(): string {
-        return this._make
+    set setId(id: string) {
+        this.id = id
     }
 
-    get model(): string {
-        return this._model
+    get getMake(): string {
+        return this.make
     }
 
-    get colour(): string {
-        return this._colour
+    get getModel(): string {
+        return this.model
     }
 
-    get year(): string {
-        return this._year
+    get getColour(): string {
+        return this.colour
+    }
+
+    get getYear(): string {
+        return this.year
     }
 }

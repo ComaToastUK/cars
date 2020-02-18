@@ -5,4 +5,5 @@ export interface CarService {
     getCarById(id: string): Promise<Car | null>;
     createCar(car: Car): Promise<boolean>;
     deleteCar(id: string): Promise<boolean>;
+    updateCar(car: Car, id: string): Promise<boolean>;
 }
