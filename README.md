@@ -30,7 +30,8 @@
 ## Getting started
 
 - Make sure you have a recent version of Node.js installed and install yarn globally `npm i -g yarn`
-- Run `$ docker-compose up --build` from the project root directory to create your mongodb container. If you already have a mongodb instance running on the default port you can change the port in the docker-compose.yaml and you will also have to run the command `$ cp .env.example .env` replacing the port in the CONNECTION_STRING variable with the new port
+- `$ cp .env.example .env` to create a .env file in your root directory with default values
+- Run `$ docker-compose up --build -d` from the project root directory to create your mongodb container and instantiate the database
 - `$ yarn` to download project dependencies
 - `$ yarn start` to start the application
 
@@ -55,4 +56,5 @@ To update a car post to the /cars/your-car-id endpoint with an updated car objec
 To delete a car send a delete to the /cars/your-car-id endpoint and it will be removed from the api.
 
 ## Running the tests
-To run the tests use the command `$ yarn test`. This will also provide an lcov report which can be found in the coverage/ directory. 
+To run the tests use the command `$ yarn test`. This will also provide an lcov report which can be found in the coverage/ directory.
+
