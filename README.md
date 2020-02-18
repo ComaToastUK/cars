@@ -29,7 +29,7 @@
 
 ## Getting started
 
-- Make sure you have a recent version of Node.js installed and install yarn globally `npm i -g yarn`
+- Make sure you have a recent version of Node.js installed and install yarn and typescript globally `npm i -g yarn`, `yarn global add typescript`
 - `$ cp .env.example .env` to create a .env file in your root directory with default values
 - Run `$ docker-compose up --build -d` from the project root directory to create your mongodb container and instantiate the database
 - `$ yarn` to download project dependencies
