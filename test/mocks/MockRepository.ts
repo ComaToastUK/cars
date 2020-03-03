@@ -34,7 +34,7 @@ export class MockRepository implements Repository<Car> {
         if (exists) {
             for (let i = 0; i < this._collection.length; i++) {
                 if (this._collection[i].getId === id) {
-                    this._collection.splice(i)
+                    this._collection.splice(i,1)
                     return true
                 }
             }
